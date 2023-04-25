@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  fast_foods_app:
+    build: .
+    ports:
+      - 8000:8000
+    image: fast_foods_img
+    container_name: fast_foods
