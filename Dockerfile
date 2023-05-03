@@ -34,11 +34,10 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt ./
 
 # Install dependencies
-# RUN pip install --no-cache-dir -r ./requirements.txt
-RUN pip install -U django
-RUN pip install -U psycopg2
-RUN pip install -U django-environ
-# RUN pip install -U scikit-learn
+RUN pip install -U --no-cache-dir -r ./requirements.txt
+
+# Apparently, Alpine Linus does not support installing scikit-learn using pip
+RUN apk add py3-scikit-learn
 
 # Add code to interpret in container
 COPY ./fast_foods_app ./fast_foods_app/
