@@ -36,8 +36,14 @@ COPY ./requirements.txt ./
 # Install dependencies
 RUN pip install -U --no-cache-dir -r ./requirements.txt
 
-# Apparently, Alpine Linus does not support installing scikit-learn using pip
+# Apparently, Alpine Linux does not support installing scikit-learn using pip
 RUN apk add py3-scikit-learn
+
+# Install NumPy
+RUN apk add py3-numpy 
+
+# Install Pandas
+RUN apk add py3-pandas
 
 # Add code to interpret in container
 COPY ./fast_foods_app ./fast_foods_app/
