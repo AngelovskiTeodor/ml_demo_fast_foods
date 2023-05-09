@@ -17,6 +17,11 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <h1>Training Machine Learning Model</h1>
+        {% if mean_squared_error %}
+            <p>
+                The model was trained successfuly. The mean squared error is {{ mean_squared_error }}
+            </p>
+        {% endif %}
         <script src="" async defer></script>
     </body>
 </html>
