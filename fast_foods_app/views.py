@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from .prediction import train as train_model
+
+from os import getcwd as pwd    # debugging
 
 # Create your views here.
 @csrf_exempt
@@ -8,8 +11,9 @@ def index(request):
     return render(request, "fast_foods/index.html", context)
 
 def train(request):
-    accuracy = 0
-    context = {"accuracy": accuracy}
+    print(pwd())    # debugging
+    model, mean_squared_error = train_model()
+    context = {"mean_squared_error": mean_squared_error}
     return render(request, "fast_foods/train.html", context)
 
 def predict(request):

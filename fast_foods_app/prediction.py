@@ -1,6 +1,8 @@
 import pandas
 import numpy as np
+from math import sqrt
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error as mse
 
 def train():
     dataframe = pandas.read_csv("./fastfood.csv")
@@ -20,9 +22,6 @@ def train():
     model = LinearRegression()
     model.fit(train_x.values, train_y.values)
 
-    #predicted_list = model.predict(test_x.values)
-    #print(predicted_list)
-
     squared_error = 0
     for sample_x,sample_y in zip(test_x['calories'], test_y['cholesterol']):
         predicted_value = model.predict(np.array([[sample_x]]))
@@ -31,8 +30,14 @@ def train():
         squared = error * error
         squared_error += squared
     mean_squared_error = squared_error / len(test_y)
-    print(mean_squared_error)
-    return model, mean_squared_error
+    error_from_prediction = mean_squared_error
+    print(error_from_prediction)
+
+    predicted_list = model.predict(test_x.values)
+    #print(predicted_list)
+    print(mse(test_y, predicted_list))
+
+    return model, error_from_prediction
 
 if __name__ == '__main__':
     train()
